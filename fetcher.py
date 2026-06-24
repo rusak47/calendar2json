@@ -1,6 +1,7 @@
 import json
 import logging
 from datetime import date
+from json import JSONDecodeError
 from urllib.request import urlopen
 from urllib.error import URLError
 
@@ -56,7 +57,7 @@ def fetch_from_tallyfy(region, years):
         try:
             with urlopen(url, timeout=10) as resp:
                 data = json.loads(resp.read())
-        except URLError as e:
+        except (URLError, JSONDecodeError) as e:
             logger.warning("Tallyfy fetch failed for %s %s: %s", region, year, e)
             continue
 
