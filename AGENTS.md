@@ -11,7 +11,7 @@
 - `fetcher.py` — Holiday sources: `holidays` lib (primary, offline) + Tallyfy (fallback, 2026–2030 only)
 - `rules.py` — Rules engine: short days, observance shifts, swap inversion/merge
 - `regions/lv.yaml` — Latvia config (short hours, observance rules, annual swap overrides)
-- `tests/` — Pytest suite (45 tests)
+- `tests/` — Pytest suite (56 tests)
 
 ## Data flow
 `holidays` lib → dict of `{date: HolidayEntry}` → `build_calendar()`: apply_observance() → compute_short_days() → apply_swaps() → sorted JSON.
@@ -24,7 +24,7 @@
 - **Swapped days**: holidays lib marks them as "Brīvdiena (pārcelta no DD.MM.YYYY)". Parse via regex for automatic swap inversion.
 
 ## API gotchas
-- **Tallyfy**: 404 for years < 2026. `observed_date` field exists but Latvia 2026–2028 has no shifts so it untested.
+- **Tallyfy**: 404 for years < 2026. `observed_date` field parsed correctly (tested via mock).
 - **tavirekini.lv**: Best Latvia reference, static HTML per year, no API. Swap data must be extracted manually.
 - **Nager.Date**: REST API v3 does NOT expose ObservedDate in JSON. v4 (beta) may add it.
 - **KF6Holidays**: `.holiday` files compiled into `libKF6Holidays.so` as Qt resources. Extract via `strings` or link library.
