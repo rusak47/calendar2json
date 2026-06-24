@@ -6,7 +6,7 @@ import os
 import sys
 import yaml
 
-from fetcher import fetch_holidays
+from fetcher import fetch_holidays, load_memoriam_dates
 from rules import build_calendar
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -81,16 +81,18 @@ def main():
         logger.warning("--offline is set but --source=tallyfy requires network; using holidays lib")
         source = "holidays"
 
+    memoriam = load_memoriam_dates(args.region, config, years)
+
     if args.single_year:
         result = {}
         for year in years:
             holidays = fetch_holidays(args.region, [year], source=source)
-            result[str(year)] = build_calendar(holidays, config, year)
+            result[str(year)] = build_calendar(holidays, config, year, memoriam)
     else:
         holidays = fetch_holidays(args.region, years, source=source)
         result = {}
         for year in years:
-            cal = build_calendar(holidays, config, year)
+            cal = build_calendar(holidays, config, year, memoriam)
             result.update(cal)
 
     result = dict(sorted(result.items()))

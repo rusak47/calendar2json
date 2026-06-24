@@ -1,0 +1,109 @@
+# Latvijas atceres un atzīmējamās dienas
+# Source: likumi.lv/ta/id/72608 "Par svētku, atceres un atzīmējamām dienām" (2. pants)
+# Current redaction: 18.03.2025 (includes amendments up to 27.02.2025)
+
+# Fixed annual dates (MM-DD format)
+fixed:
+  # Janvāris
+  "01-20":
+    name: "1991. gada barikāžu aizstāvju atceres diena"
+  "01-26":
+    name: "Latvijas Republikas starptautiskās (de jure) atzīšanas diena"
+
+  # Februāris
+  "02-27":
+    name: "Starptautisko nevalstisko organizāciju diena"
+
+  # Marts
+  "03-02":
+    name: "Nacionālo partizānu bruņotās pretošanās atceres diena"
+  "03-08":
+    name: "Starptautisko sieviešu diena"
+  "03-17":
+    name: "Nacionālās pretošanās kustības piemiņas diena"
+  "03-25":
+    name: "Komunistiskā genocīda upuru piemiņas diena"
+
+  # Aprīlis
+  "04-27":
+    name: "Latgales kongresa diena"
+
+  # Maijs
+  "05-01":
+    name: "Latvijas Republikas Satversmes sapulces sasaukšanas diena"
+  "05-08":
+    name: "Nacisma sagrāves diena un Otrā pasaules kara upuru piemiņas diena"
+  "05-09":
+    name: "Eiropas diena"
+  "05-15":
+    name: "Starptautisko ģimenes diena"
+  "05-17":
+    name: "Ugunsdzēsēju un glābēju diena"
+
+  # Jūnijs
+  "06-01":
+    name: "Starptautisko bērnu aizsardzības diena"
+  "06-14":
+    name: "Komunistiskā genocīda upuru piemiņas diena"
+  "06-17":
+    name: "Latvijas Republikas okupācijas diena"
+  "06-22":
+    name: "Varoņu piemiņas diena (Cēsu kaujas atceres diena)"
+
+  # Jūlijs
+  "07-04":
+    name: "Ebreju tautas genocīda upuru piemiņas diena"
+
+  # Augusts
+  "08-11":
+    name: "Latvijas brīvības cīnītāju piemiņas diena"
+  "08-21":
+    name: "Konstitucionālā likuma \"Par Latvijas Republikas valstisko statusu\" pieņemšanas diena"
+  "08-23":
+    name: "Staļinisma un nacisma upuru atceres diena"
+
+  # Septembris
+  "09-01":
+    name: "Zinību diena"
+  "09-22":
+    name: "Baltu vienības diena"
+
+  # Oktobris
+  "10-01":
+    name: "Starptautisko senioru diena"
+  "10-05":
+    name: "Skolotāju diena"
+  "10-15":
+    name: "Valsts valodas diena"
+
+  # Novembris
+  "11-07":
+    name: "Robežsargu diena"
+  "11-11":
+    name: "Lāčplēša diena"
+  "11-21":
+    name: "2013. gada 21. novembra traģēdijas atceres diena"
+
+  # Decembris
+  "12-05":
+    name: "Policijas darbinieku diena"
+
+# Floating dates — computed per year as nth weekday of month
+# weekday: 0=Monday, 6=Sunday
+floating:
+  - month: 6
+    weekday: 6
+    ordinal: 3
+    name: "Medicīnas darbinieku diena"
+  - month: 7
+    weekday: 5
+    ordinal: 2
+    name: "Jūras svētku diena"
+  - month: 9
+    weekday: 6
+    ordinal: 2
+    name: "Tēva diena"
+  - month: 12
+    weekday: 6
+    ordinal: 1
+    name: "Pret latviešu tautu vērstā totalitārā komunistiskā režīma genocīda upuru piemiņas diena"

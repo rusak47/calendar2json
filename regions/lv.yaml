@@ -15,6 +15,11 @@ pre_holiday_short_hours: 7
 # Auto-detect sandwiched Mon/Fri as swap candidates
 sandwich_auto_detect: true
 
+# Memoriam dates source — authoritative law defining commemorative dates.
+# If {code}-memoriam.yaml is absent, the agent fetches from this URL.
+memoriam:
+  source: "https://likumi.lv/ta/id/72608-par-svetku-atceres-un-atzimejamam-dienam"
+
 # Annual government decree swap overrides.
 # Format: swapped_day_off: swapped_to_workday (MM-DD: MM-DD)
 # Overrides auto-detection; empty dict means no overrides for that year

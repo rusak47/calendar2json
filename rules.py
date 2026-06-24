@@ -133,7 +133,12 @@ def apply_observance(holidays, region_config, year):
     return results
 
 
-def build_calendar(holidays, region_config, year):
+def _compute_day_type(dt):
+    """Return 'weekend' for Sat/Sun, 'workday' for Mon-Fri."""
+    return "weekend" if dt.weekday() >= 5 else "workday"
+
+
+def build_calendar(holidays, region_config, year, memoriam_dates=None):
     entries = {}
 
     for d_str, entry in holidays.items():
@@ -155,5 +160,25 @@ def build_calendar(holidays, region_config, year):
 
     swaps = apply_swaps(holidays, region_config, year)
     entries.update(swaps)
+
+    if memoriam_dates:
+        for d_str, info in memoriam_dates.items():
+            dt = _parse_date(d_str)
+            if dt.year != year:
+                continue
+            if d_str in entries:
+                entries[d_str]["is_memoriam"] = True
+                existing = entries[d_str].get("name")
+                if existing:
+                    if info["name"] not in existing:
+                        entries[d_str]["name"] = f"{existing}; {info['name']}"
+                else:
+                    entries[d_str]["name"] = info["name"]
+            else:
+                entries[d_str] = {
+                    "type": _compute_day_type(dt),
+                    "is_memoriam": True,
+                    "name": info["name"],
+                }
 
     return entries
