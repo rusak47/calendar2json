@@ -10,6 +10,12 @@ __pycache__/
 *.tmp
 *.swp
 
+# npm / ECC plugin
+node_modules/
+
+# session logs
+session_calendar2json_*.md
+
 # OS
 .DS_Store
 Thumbs.db
