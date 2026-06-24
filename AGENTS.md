@@ -2,7 +2,8 @@
 
 ## Commands
 - Run: `./calendar2json.py --region LV --year 2026`
-- Test: `./calendar2json.py --region LV --year 2025-2030 --offline --pretty`
+- Test: `.venv/bin/python3 -m pytest tests/ -v`
+- Integration check: `./calendar2json.py --region LV --year 2025-2030 --offline --pretty`
 - Verify against tavirekini.lv manually (static HTML, no API)
 
 ## Code structure
@@ -10,6 +11,7 @@
 - `fetcher.py` — Holiday sources: `holidays` lib (primary, offline) + Tallyfy (fallback, 2026–2030 only)
 - `rules.py` — Rules engine: short days, observance shifts, swap inversion/merge
 - `regions/lv.yaml` — Latvia config (short hours, observance rules, annual swap overrides)
+- `tests/` — Pytest suite (45 tests)
 
 ## Data flow
 `holidays` lib → dict of `{date: HolidayEntry}` → `build_calendar()`: apply_observance() → compute_short_days() → apply_swaps() → sorted JSON.
