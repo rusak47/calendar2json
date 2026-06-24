@@ -17,7 +17,7 @@
 ## Latvia holiday rules
 - **Observance shifts**: Only May 4 and Nov 18 get weekend→Monday. Labour Day, Christmas, Easter on weekends do NOT shift.
 - **Sandwiched day pattern**: Thu holiday → Fri swap candidate; Tue holiday → Mon swap candidate. Destination Saturday set by MK rīkojums (~June for next year).
-- **Short hours propagate**: If a pre-holiday short day (7h) is the swapped-off day, the swapped-to Saturday also gets 7h (Darba likums 133.pants).
+- **Short hours propagate** (removed): If a pre-holiday short day is swapped, the swapped-to Saturday would get the same hours per Darba likums 133.pants. Removed when work_hours was cut; re-add if hours are needed later.
 - **Pre-holiday short days**: Any workday immediately before a public holiday = 7h. Deterministic from holiday list alone.
 - **Swapped days**: holidays lib marks them as "Brīvdiena (pārcelta no DD.MM.YYYY)". Parse via regex for automatic swap inversion.
 
@@ -30,7 +30,7 @@
 ## Edge cases caught
 - **Cross-year short days**: A holiday on Jan 1 would make Dec 31 a short day — must filter `prev.year != year`.
 - **Holidays as short days**: Jun 23 (Līgo) and Dec 24-25 (Christmas) wrongly flagged as "pre-holiday short" because they sit before another holiday. Fix: check that the previous day is not in `all_holiday_dates` (including swap entries).
-- **Swapped day short hours**: Compute raw short days first (swap-independent), then check if the swapped-off day was in that raw set to determine swapped-to hours.
+- **Swapped day short hours**: Compute raw short days first (swap-independent), then check if the swapped-off day was in that raw set to determine swapped-to hours. Removed when work_hours was cut; re-add if hours are needed later.
 
 ## Sources
 - Latvia holiday law: `likumi.lv/doc.php?id=72608`

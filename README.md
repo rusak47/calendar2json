@@ -51,17 +51,14 @@ Only edge-case days are included (holidays, swaps, short days). Normal workdays 
 {
   "2026-05-04": {
     "type": "holiday",
-    "name": "Latvijas Republikas Neatkarības atjaunošanas diena",
-    "work_hours": 0
+    "name": "Latvijas Republikas Neatkarības atjaunošanas diena"
   },
   "2026-11-17": {
     "type": "pre_holiday_short",
-    "work_hours": 7,
     "note": "Pirmssvētku diena"
   },
   "2026-01-17": {
     "type": "swapped_workday",
-    "work_hours": 8,
     "swap_source": "2026-01-02",
     "note": "Pārceltā darba diena no 02.01.2026"
   }

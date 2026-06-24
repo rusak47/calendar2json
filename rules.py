@@ -28,42 +28,29 @@ def _real_holiday_dates(holidays, year):
     return dates
 
 
-def compute_raw_short_day_dates(holidays, year):
-    """Return set of dates that WOULD be short workdays before holidays,
-    ignoring swapped-day overrides. Used to determine swapped workday hours."""
-    real_holidays = _real_holiday_dates(holidays, year)
-    raw = set()
-    for h_date in sorted(real_holidays):
-        prev = h_date - timedelta(days=1)
-        if prev.year != year:
-            continue
-        if prev.weekday() < 5:
-            raw.add(prev)
-    return raw
-
-
 def compute_short_days(holidays, region_config, year):
     short_hours = region_config.get("pre_holiday_short_hours")
     if not short_hours:
-        return {}, set()
+        return {}
 
     all_holiday_dates = set(
         _parse_date(d) for d, e in holidays.items()
         if _parse_date(d).year == year
     )
 
-    raw = compute_raw_short_day_dates(holidays, year)
     results = {}
-    for prev in sorted(raw):
-        if prev not in all_holiday_dates:
-            p_fmt = _fmt(prev)
+    for h_date in sorted(_real_holiday_dates(holidays, year)):
+        prev = h_date - timedelta(days=1)
+        if prev.year != year:
+            continue
+        p_fmt = _fmt(prev)
+        if prev.weekday() < 5 and prev not in all_holiday_dates:
             results[p_fmt] = {
                 "type": "pre_holiday_short",
-                "work_hours": short_hours,
                 "note": "Pirmssvētku diena",
             }
 
-    return results, raw
+    return results
 
 
 def extract_swaps_from_holiday_names(holidays, year):
@@ -80,7 +67,7 @@ def extract_swaps_from_holiday_names(holidays, year):
     return swaps
 
 
-def apply_swaps(holidays, region_config, year, raw_short_dates=None):
+def apply_swaps(holidays, region_config, year):
     override_swaps = {}
     year_swaps = region_config.get("swaps", {}).get(str(year), {})
     for src, dst in year_swaps.items():
@@ -94,8 +81,6 @@ def apply_swaps(holidays, region_config, year, raw_short_dates=None):
         if src not in override_swaps:
             override_swaps[src] = dst
 
-    raw_short_dates = raw_short_dates or set()
-
     results = {}
     for src, dst in override_swaps.items():
         src_dt = _parse_date(src)
@@ -103,18 +88,12 @@ def apply_swaps(holidays, region_config, year, raw_short_dates=None):
 
         results[src] = {
             "type": "swapped_day_off",
-            "work_hours": 0,
             "swap_source": dst,
             "note": f"Darba diena pārcelta uz {dst_dt.strftime('%d.%m.%Y')}",
         }
 
-        is_short = src_dt in raw_short_dates
-        short_hours = region_config.get("pre_holiday_short_hours", 0)
-        work_hours = short_hours if is_short else 8
-
         results[dst] = {
             "type": "swapped_workday",
-            "work_hours": work_hours,
             "swap_source": src,
             "note": f"Pārceltā darba diena no {src_dt.strftime('%d.%m.%Y')}",
         }
@@ -147,7 +126,6 @@ def apply_observance(holidays, region_config, year):
 
         results[o_fmt] = {
             "type": "observed_holiday",
-            "work_hours": 0,
             "name": f"{label} (brīvdiena)",
             "source_date": d_fmt,
             "note": f"Pārceltā brīvdiena no {dt.strftime('%d.%m.%Y')}",
@@ -167,16 +145,15 @@ def build_calendar(holidays, region_config, year):
             "name": entry.name,
             "local_name": entry.local_name,
             "observed_date": entry.observed_date,
-            "work_hours": 0,
         }
 
     obs = apply_observance(holidays, region_config, year)
     entries.update(obs)
 
-    short, raw_short_dates = compute_short_days(holidays, region_config, year)
+    short = compute_short_days(holidays, region_config, year)
     entries.update(short)
 
-    swaps = apply_swaps(holidays, region_config, year, raw_short_dates)
+    swaps = apply_swaps(holidays, region_config, year)
     entries.update(swaps)
 
     return entries
