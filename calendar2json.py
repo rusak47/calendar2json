@@ -66,6 +66,10 @@ def main():
         help="Output separate JSON per year",
     )
 
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(0)
+
     args = parser.parse_args()
     years = parse_years(args.year)
     config = load_region_config(args.region)
