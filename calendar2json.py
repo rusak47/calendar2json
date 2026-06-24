@@ -96,6 +96,7 @@ def main():
             result.update(cal)
 
     result = dict(sorted(result.items()))
+    result = {args.region: result}
 
     indent = 2 if args.pretty else None
     output = json.dumps(result, indent=indent, ensure_ascii=False)
