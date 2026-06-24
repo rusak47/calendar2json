@@ -1,0 +1,31 @@
+name: Latvia
+code: LV
+language: lv
+
+# Observance shifts: only these holidays get moved to Monday if on weekend
+observance_shifts:
+  - holiday: "05-04"
+    label: "Latvijas Republikas Neatkarības atjaunošanas diena"
+  - holiday: "11-18"
+    label: "Latvijas Republikas Proklamēšanas diena"
+
+# Workday before any public holiday is shortened
+pre_holiday_short_hours: 7
+
+# Auto-detect sandwiched Mon/Fri as swap candidates
+sandwich_auto_detect: true
+
+# Annual government decree swap overrides.
+# Format: swapped_day_off: swapped_to_workday (MM-DD: MM-DD)
+# Overrides auto-detection; empty dict means no overrides for that year
+swaps:
+  2025:
+  # May 2 (Fri) between May 1 (Thu holiday) + weekend → moved to May 10 (Sat)
+    "05-02": "05-10"
+  # Nov 17 (Mon) between weekend + Nov 18 (Tue holiday) → moved to Nov 8 (Sat)
+    "11-17": "11-08"
+  2026:
+  # Jan 2 (Fri) between Jan 1 (Thu holiday) + weekend → moved to Jan 17 (Sat)
+    "01-02": "01-17"
+  # Jun 22 (Mon) between weekend + Jun 23-24 (Tue-Wed holidays) → moved to Jun 27 (Sat)
+    "06-22": "06-27"
