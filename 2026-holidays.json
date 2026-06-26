@@ -1,0 +1,303 @@
+{
+  "LV": {
+    "2026-01-01": {
+      "type": "holiday",
+      "name": "Jaungada diena",
+      "local_name": "Jaungada diena",
+      "observed_date": "2026-01-01"
+    },
+    "2026-01-02": {
+      "type": "swapped_day_off",
+      "swap_source": "2026-01-17",
+      "note": "Darba diena pārcelta uz 17.01.2026"
+    },
+    "2026-01-17": {
+      "type": "swapped_workday",
+      "swap_source": "2026-01-02",
+      "note": "Pārceltā darba diena no 02.01.2026"
+    },
+    "2026-01-20": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "1991. gada barikāžu aizstāvju atceres diena"
+    },
+    "2026-01-26": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Latvijas Republikas starptautiskās (de jure) atzīšanas diena"
+    },
+    "2026-02-27": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Starptautisko nevalstisko organizāciju diena"
+    },
+    "2026-03-02": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Nacionālo partizānu bruņotās pretošanās atceres diena"
+    },
+    "2026-03-08": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Starptautisko sieviešu diena"
+    },
+    "2026-03-17": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Nacionālās pretošanās kustības piemiņas diena"
+    },
+    "2026-03-25": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Komunistiskā genocīda upuru piemiņas diena"
+    },
+    "2026-04-02": {
+      "type": "workday",
+      "is_short_day": true,
+      "note": "Pirmssvētku diena"
+    },
+    "2026-04-03": {
+      "type": "holiday",
+      "name": "Lielā Piektdiena",
+      "local_name": "Lielā Piektdiena",
+      "observed_date": "2026-04-03"
+    },
+    "2026-04-05": {
+      "type": "holiday",
+      "name": "Pirmās Lieldienas",
+      "local_name": "Pirmās Lieldienas",
+      "observed_date": "2026-04-05"
+    },
+    "2026-04-06": {
+      "type": "holiday",
+      "name": "Otrās Lieldienas",
+      "local_name": "Otrās Lieldienas",
+      "observed_date": "2026-04-06"
+    },
+    "2026-04-27": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Latgales kongresa diena"
+    },
+    "2026-04-30": {
+      "type": "workday",
+      "is_short_day": true,
+      "note": "Pirmssvētku diena"
+    },
+    "2026-05-01": {
+      "type": "holiday",
+      "name": "Darba svētki; Latvijas Republikas Satversmes sapulces sasaukšanas diena",
+      "local_name": "Darba svētki; Latvijas Republikas Satversmes sapulces sasaukšanas diena",
+      "observed_date": "2026-05-01",
+      "is_memoriam": true
+    },
+    "2026-05-04": {
+      "type": "holiday",
+      "name": "Latvijas Republikas Neatkarības atjaunošanas diena",
+      "local_name": "Latvijas Republikas Neatkarības atjaunošanas diena",
+      "observed_date": "2026-05-04"
+    },
+    "2026-05-08": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Nacisma sagrāves diena un Otrā pasaules kara upuru piemiņas diena"
+    },
+    "2026-05-09": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Eiropas diena"
+    },
+    "2026-05-10": {
+      "type": "holiday",
+      "name": "Mātes diena",
+      "local_name": "Mātes diena",
+      "observed_date": "2026-05-10"
+    },
+    "2026-05-15": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Starptautisko ģimenes diena"
+    },
+    "2026-05-17": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Ugunsdzēsēju un glābēju diena"
+    },
+    "2026-05-24": {
+      "type": "holiday",
+      "name": "Vasarsvētki",
+      "local_name": "Vasarsvētki",
+      "observed_date": "2026-05-24"
+    },
+    "2026-06-01": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Starptautisko bērnu aizsardzības diena"
+    },
+    "2026-06-14": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Komunistiskā genocīda upuru piemiņas diena"
+    },
+    "2026-06-17": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Latvijas Republikas okupācijas diena"
+    },
+    "2026-06-21": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Medicīnas darbinieku diena"
+    },
+    "2026-06-22": {
+      "type": "swapped_day_off",
+      "swap_source": "2026-06-27",
+      "note": "Darba diena pārcelta uz 27.06.2026",
+      "is_short_day": true,
+      "is_memoriam": true,
+      "name": "Varoņu piemiņas diena (Cēsu kaujas atceres diena)"
+    },
+    "2026-06-23": {
+      "type": "holiday",
+      "name": "Līgo diena",
+      "local_name": "Līgo diena",
+      "observed_date": "2026-06-23"
+    },
+    "2026-06-24": {
+      "type": "holiday",
+      "name": "Jāņu diena",
+      "local_name": "Jāņu diena",
+      "observed_date": "2026-06-24"
+    },
+    "2026-06-27": {
+      "type": "swapped_workday",
+      "swap_source": "2026-06-22",
+      "note": "Pārceltā darba diena no 22.06.2026"
+    },
+    "2026-07-04": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Ebreju tautas genocīda upuru piemiņas diena"
+    },
+    "2026-07-11": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Jūras svētku diena"
+    },
+    "2026-08-11": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Latvijas brīvības cīnītāju piemiņas diena"
+    },
+    "2026-08-21": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Konstitucionālā likuma \"Par Latvijas Republikas valstisko statusu\" pieņemšanas diena"
+    },
+    "2026-08-23": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Staļinisma un nacisma upuru atceres diena"
+    },
+    "2026-09-01": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Zinību diena"
+    },
+    "2026-09-13": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Tēva diena"
+    },
+    "2026-09-22": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Baltu vienības diena"
+    },
+    "2026-10-01": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Starptautisko senioru diena"
+    },
+    "2026-10-05": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Skolotāju diena"
+    },
+    "2026-10-15": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Valsts valodas diena"
+    },
+    "2026-11-07": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Robežsargu diena"
+    },
+    "2026-11-11": {
+      "type": "workday",
+      "is_memoriam": true,
+      "name": "Lāčplēša diena"
+    },
+    "2026-11-17": {
+      "type": "workday",
+      "is_short_day": true,
+      "note": "Pirmssvētku diena"
+    },
+    "2026-11-18": {
+      "type": "holiday",
+      "name": "Latvijas Republikas Proklamēšanas diena",
+      "local_name": "Latvijas Republikas Proklamēšanas diena",
+      "observed_date": "2026-11-18"
+    },
+    "2026-11-21": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "2013. gada 21. novembra traģēdijas atceres diena"
+    },
+    "2026-12-05": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Policijas darbinieku diena"
+    },
+    "2026-12-06": {
+      "type": "weekend",
+      "is_memoriam": true,
+      "name": "Pret latviešu tautu vērstā totalitārā komunistiskā režīma genocīda upuru piemiņas diena"
+    },
+    "2026-12-23": {
+      "type": "workday",
+      "is_short_day": true,
+      "note": "Pirmssvētku diena"
+    },
+    "2026-12-24": {
+      "type": "holiday",
+      "name": "Ziemassvētku vakars",
+      "local_name": "Ziemassvētku vakars",
+      "observed_date": "2026-12-24"
+    },
+    "2026-12-25": {
+      "type": "holiday",
+      "name": "Pirmie Ziemassvētki",
+      "local_name": "Pirmie Ziemassvētki",
+      "observed_date": "2026-12-25"
+    },
+    "2026-12-26": {
+      "type": "holiday",
+      "name": "Otrie Ziemassvētki",
+      "local_name": "Otrie Ziemassvētki",
+      "observed_date": "2026-12-26"
+    },
+    "2026-12-30": {
+      "type": "workday",
+      "is_short_day": true,
+      "note": "Pirmssvētku diena"
+    },
+    "2026-12-31": {
+      "type": "holiday",
+      "name": "Vecgada diena",
+      "local_name": "Vecgada diena",
+      "observed_date": "2026-12-31"
+    }
+  }
+}

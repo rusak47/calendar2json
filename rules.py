@@ -33,20 +33,18 @@ def compute_short_days(holidays, region_config, year):
     if not short_hours:
         return {}
 
-    all_holiday_dates = set(
-        _parse_date(d) for d, e in holidays.items()
-        if _parse_date(d).year == year
-    )
+    real_holidays = _real_holiday_dates(holidays, year)
 
     results = {}
-    for h_date in sorted(_real_holiday_dates(holidays, year)):
+    for h_date in sorted(real_holidays):
         prev = h_date - timedelta(days=1)
         if prev.year != year:
             continue
         p_fmt = _fmt(prev)
-        if prev.weekday() < 5 and prev not in all_holiday_dates:
+        if prev.weekday() < 5 and prev not in real_holidays:
             results[p_fmt] = {
-                "type": "pre_holiday_short",
+                "type": "workday",
+                "is_short_day": True,
                 "note": "Pirmssvētku diena",
             }
 
@@ -160,6 +158,10 @@ def build_calendar(holidays, region_config, year, memoriam_dates=None):
 
     swaps = apply_swaps(holidays, region_config, year)
     entries.update(swaps)
+
+    for d_str in list(entries.keys()):
+        if entries[d_str]["type"] == "swapped_day_off" and d_str in short:
+            entries[d_str]["is_short_day"] = True
 
     if memoriam_dates:
         for d_str, info in memoriam_dates.items():

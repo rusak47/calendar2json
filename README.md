@@ -54,7 +54,8 @@ Only edge-case days are included (holidays, swaps, short days). Normal workdays 
     "name": "Latvijas Republikas Neatkarības atjaunošanas diena"
   },
   "2026-11-17": {
-    "type": "pre_holiday_short",
+    "type": "workday",
+    "is_short_day": true,
     "note": "Pirmssvētku diena"
   },
   "2026-01-17": {
@@ -65,7 +66,7 @@ Only edge-case days are included (holidays, swaps, short days). Normal workdays 
 }
 ```
 
-Entry types: `holiday`, `observed_holiday`, `pre_holiday_short`, `swapped_day_off`, `swapped_workday`.
+Entry types: `holiday`, `observed_holiday`, `workday`, `weekend`, `swapped_day_off`, `swapped_workday`. Pre-holiday short days use `is_short_day: true` on a `workday` entry.
 
 ## Adding a region
 

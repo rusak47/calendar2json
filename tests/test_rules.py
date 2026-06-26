@@ -72,7 +72,8 @@ class TestComputeShortDays:
         result = compute_short_days(holidays, config, 2026)
         assert _parse_date("2026-04-02").weekday() < 5
         assert "2026-04-02" in result
-        assert result["2026-04-02"]["type"] == "pre_holiday_short"
+        assert result["2026-04-02"]["type"] == "workday"
+        assert result["2026-04-02"].get("is_short_day") is True
         assert result["2026-04-02"]["note"] == "Pirmssvētku diena"
 
     def test_holiday_itself_not_short(self):
@@ -85,7 +86,7 @@ class TestComputeShortDays:
         assert "2026-06-23" not in result
         assert "2026-06-24" not in result
 
-    def test_swapped_day_off_not_short(self):
+    def test_swapped_day_off_still_raw_short_day(self):
         holidays = {
             "2026-06-22": _entry("2026-06-22", "Brīvdiena (pārcelta no 27.06.2026)"),
             "2026-06-23": _entry("2026-06-23", "Līgo diena"),
@@ -93,7 +94,9 @@ class TestComputeShortDays:
         }
         config = {"pre_holiday_short_hours": 7}
         result = compute_short_days(holidays, config, 2026)
-        assert "2026-06-22" not in result
+        assert "2026-06-22" in result
+        assert result["2026-06-22"]["type"] == "workday"
+        assert result["2026-06-22"].get("is_short_day") is True
 
     def test_cross_year_short_day_excluded(self):
         holidays = {
@@ -257,6 +260,72 @@ class TestApplyObservance:
         assert result == {}
 
 
+class TestIsShortDayOnSwappedOff:
+    def test_swapped_off_date_has_is_short_day_when_source_was_short(self):
+        holidays = {
+            "2026-06-23": _entry("2026-06-23", "Līgo diena"),
+            "2026-06-24": _entry("2026-06-24", "Jāņu diena"),
+        }
+        config = {
+            "pre_holiday_short_hours": 7,
+            "swaps": {"2026": {"06-22": "06-27"}},
+        }
+        cal = build_calendar(holidays, config, 2026)
+        assert cal["2026-06-22"]["type"] == "swapped_day_off"
+        assert cal["2026-06-22"].get("is_short_day") is True
+
+    def test_swapped_workday_does_not_get_is_short_day(self):
+        holidays = {
+            "2026-06-23": _entry("2026-06-23", "Līgo diena"),
+            "2026-06-24": _entry("2026-06-24", "Jāņu diena"),
+        }
+        config = {
+            "pre_holiday_short_hours": 7,
+            "swaps": {"2026": {"06-22": "06-27"}},
+        }
+        cal = build_calendar(holidays, config, 2026)
+
+        swapped_off = cal["2026-06-22"]
+        assert swapped_off["type"] == "swapped_day_off"
+
+        swapped_work = cal["2026-06-27"]
+        assert swapped_work["type"] == "swapped_workday"
+
+    def test_swapped_off_date_not_pre_holiday_short_has_no_is_short_day(self):
+        holidays = {
+            "2026-01-01": _entry("2026-01-01", "Jaungada diena"),
+        }
+        config = {
+            "pre_holiday_short_hours": 7,
+            "swaps": {"2026": {"01-02": "01-17"}},
+        }
+        cal = build_calendar(holidays, config, 2026)
+
+        assert "is_short_day" not in cal["2026-01-02"]
+
+    def test_latvia_2026_june_swap_has_is_short_day(self):
+        import holidays as hlib
+        lv = hlib.country_holidays("LV", years=2026)
+        holidays = _lv_holidays_dict(lv.items())
+        config = {
+            "pre_holiday_short_hours": 7,
+            "swaps": {"2026": {"01-02": "01-17", "06-22": "06-27"}},
+            "observance_shifts": [
+                {"holiday": "05-04", "label": "Latvijas Republikas Neatkarības atjaunošanas diena"},
+                {"holiday": "11-18", "label": "Latvijas Republikas Proklamēšanas diena"},
+            ],
+        }
+        cal = build_calendar(holidays, config, 2026)
+
+        assert "2026-06-22" in cal
+        assert cal["2026-06-22"]["type"] == "swapped_day_off"
+        assert cal["2026-06-22"].get("is_short_day") is True
+
+        assert "2026-06-27" in cal
+        assert cal["2026-06-27"]["type"] == "swapped_workday"
+        assert "is_short_day" not in cal["2026-06-27"]
+
+
 class TestBuildCalendarIntegration:
     def test_2026_full_calendar(self):
         import holidays as hlib
@@ -282,10 +351,11 @@ class TestBuildCalendarIntegration:
 
         for d in ["2026-04-02", "2026-04-30", "2026-11-17", "2026-12-23", "2026-12-30"]:
             assert d in cal, f"missing short day {d}"
-            assert cal[d]["type"] == "pre_holiday_short"
+            assert cal[d]["type"] == "workday"
+            assert cal[d].get("is_short_day") is True
 
         for d in ["2026-06-23", "2026-06-24"]:
-            assert "pre_holiday_short" != cal.get(d, {}).get("type")
+            assert not cal.get(d, {}).get("is_short_day")
 
         assert "work_hours" not in cal["2026-01-01"]
 
